@@ -3,22 +3,18 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
-    <!-- <mat-toolbar>Menu</mat-toolbar> -->
+    <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="#">
+      <a mat-list-item
+         routerLink="">
         <mat-icon class="menuIcons">dashboard</mat-icon>
         <span><b>Dashboard</b></span>
       </a>
-      <a mat-list-item 
-         href="#/devices">
+      <a mat-list-item
+         routerLink="devices">
         <mat-icon class="menuIcons">devices</mat-icon>
         <span><b>Devices</b></span>
       </a>
-      <a mat-list-item href="#/alarms">
-        <mat-icon class="menuIcons">alarms</mat-icon>
-        <span><b>Alarms</b></span>
-      </a>
-     
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -34,6 +30,7 @@
       <span>IoThingS</span>
     </mat-toolbar>
     <!-- Add Content Here -->
-    <app-dashboard></app-dashboard>
+    <app-dashboard *ngIf="this.router.url == '/'"></app-dashboard>
+    <app-devices *ngIf="this.router.url == '/devices'"></app-devices>
     </mat-sidenav-content>
 </mat-sidenav-container>
